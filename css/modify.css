@@ -1,0 +1,179 @@
+@charset "UTF-8";
+
+.quick {
+	background: #0c2340;
+	padding: 5px 8px;
+	color: rgb(128, 255, 255);
+	border: 0;
+	font-size: 17px;
+	position: fixed;
+	right: -78px;
+	top: 270px;
+	transform: rotate(-450deg);
+	z-index: 111;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+/*----------------------------------------
+company spec
+-----------------------------------------*/
+
+.whySec {
+	background-color: #ffede6;
+	padding: 50px 0;
+}
+
+.commonHead_title {
+	font-size: 2.5rem;
+	font-weight: bold;
+	color: #333;
+}
+
+.commonHead_title span {
+	color: #eb5d1e;
+}
+
+.sub-text {
+	color: #666;
+	font-size: 1rem;
+	margin-bottom: 30px;
+}
+
+.whySec_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 20px;
+	padding-top: 20px;
+}
+
+.whySec_box {
+	background-color: white;
+	border-radius: 12px;
+	padding: 20px;
+	flex: 1 1 calc(50% - 20px);
+	text-align: left;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s, box-shadow 0.3s;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.whySec_box:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.whySec_box_img {
+	flex-shrink: 0;
+}
+
+.whySec_box_txt {
+	flex-grow: 1;
+}
+
+.whySec_box_img img {
+	max-width: 80px;
+	margin-bottom: 0;
+	display: block;
+}
+
+.whySec_box h5 {
+	font-size: 1.10rem;
+	color: #004aad;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+}
+
+.whySec_box h4 {
+	font-size: 1.25rem;
+	color: black;
+}
+
+@media (max-width: 768px) {
+	.whySec_wrapper {
+		flex-direction: column;
+	}
+
+	.commonHead_title {
+		font-size: 2rem;
+	}
+
+	.whySec_box {
+		flex-direction: column;
+		text-align: center;
+		flex: 1 1 100%;
+	}
+
+	.whySec_box_img img {
+		max-width: 60px;
+	}
+}
+
+
+/*  Quote section------------------------------------------------------------*/
+
+
+
+.carousel {
+	position: relative;
+	overflow: hidden;
+	margin: 20px 0;
+	border-radius: 10px;
+	background: white;
+}
+
+.item {
+	padding: 40px 20px;
+	box-sizing: border-box;
+}
+
+.carousel-control {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 50px;
+	/* Circle width */
+	height: 50px;
+	/* Circle height */
+	background: #EE7540;
+	/* Background color for the circle */
+	border-radius: 50%;
+	/* Circular shape */
+	color: white;
+	/* Arrow color */
+	transition: background 0.3s;
+	text-align: center;
+	line-height: 50px;
+	/* Center the arrow vertically */
+	font-size: 24px;
+	/* Arrow size */
+}
+
+.carousel-control.left {
+	left: 10px;
+}
+
+.carousel-control.right {
+	right: 10px;
+}
+
+.carousel-control:hover {
+	background: #d56b30;
+	/* Darker shade on hover */
+}
+
+.carousel-control:focus {
+	outline: none;
+	/* Remove focus outline */
+}
+
+
+
+
+
+/* Pricing-----------------------------------------------------------------------------*/
+
+
