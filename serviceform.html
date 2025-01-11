@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Inquiry Form</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4e73df, #1c1b1b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .form-container {
+            background: #fff;
+            color: #333;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #4e73df;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 8px rgba(78, 115, 223, 0.5);
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #4e73df;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2e59d9;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Form Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Service Inquiry Form</h1>
+        <p>Please fill in the details to inquire about our services.</p>
+
+        <form id="service-form" class="service-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" pattern="[6-9]{1}[0-9]{9}" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Select Service</label>
+                <select id="service" name="service" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="Core GST Filing">Core GST Filing</option>
+                    <option value="GST Data Pulls">GST Data Pulls</option>
+                    <option value="Billing">Billing</option>
+                    <option value="TDS">TDS</option>
+                    <option value="Employee ITR">Employee ITR</option>
+                    <option value="Legal Services">Legal Services</option>
+                    <option value="GST">GST (For SME's)</option>
+                    <option value="Tax Return Filing">Tax Return Filing (For Individual)</option>
+                    <option value="Tax Planning">Tax Planning (For Individual)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Additional Details</label>
+                <textarea id="message" name="message" placeholder="Provide any additional details..." rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+
+            <div id="success-message" class="success-message">
+                Thank you for your inquiry! We will get back to you soon.
+            </div>
+
+            <div id="error-message" class="error-message">
+                Oops! Something went wrong. Please try again later.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("service-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Form data
+            const formData = new FormData(this);
+
+            // Google Apps Script URL (replace with your actual script URL)
+            const scriptURL = "https://script.google.com/macros/s/AKfycbzqZX0XIgzsY7MA0kG69rjPGrrwAzGqOvLbYlqDMmmKVpCf9IpKhU13eYNl5vTBoEwQ/exec";
+
+            // Submit data to Google Sheets
+            fetch(scriptURL, {
+                method: "POST",
+                body: formData
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById("success-message").style.display = "block";
+                    document.getElementById("error-message").style.display = "none";
+                    this.reset(); // Reset form fields
+                } else {
+                    document.getElementById("error-message").style.display = "block";
+                    document.getElementById("success-message").style.display = "none";
+                }
+            }).catch(error => {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("success-message").style.display = "none";
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+
+</html>
